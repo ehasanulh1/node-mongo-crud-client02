@@ -5,6 +5,8 @@ const AddUser = () => {
 
     const handleAddUser = event => {
         event.preventDefault();
+        console.log(user);
+
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -12,6 +14,14 @@ const AddUser = () => {
             },
             body: JSON.stringify(user)
         })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    alert('User added successfully');
+                    event.target.reset();
+                }
+
+            })
     }
 
     const handleInputBlur = event => {
@@ -32,7 +42,7 @@ const AddUser = () => {
                 <br />
                 <input onBlur={handleInputBlur} type="text" name='email' placeholder='email' required />
                 <br />
-                <input type="button" value="Add User" />
+                <button>Add user</button>
             </form>
         </div>
     );
