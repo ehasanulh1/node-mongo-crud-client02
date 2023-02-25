@@ -5,7 +5,6 @@ const AddUser = () => {
 
     const handleAddUser = event => {
         event.preventDefault();
-        console.log(user);
 
         fetch('http://localhost:5000/users', {
             method: 'POST',
@@ -30,7 +29,6 @@ const AddUser = () => {
         const newUser = { ...user }
         newUser[field] = value;
         setUser(newUser);
-        console.log(user, newUser)
     }
     return (
         <div>
